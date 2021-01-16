@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mucfc</groupId>
+  <artifactId>java-thread</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>java thread topic</name>
+  <description>java 线程课题</description>
+  <inceptionYear>2021</inceptionYear>
+  <licenses>
+    <license>
+      <name>Mucfc technology.</name>
+      <url>http://www.mucfc.com</url>
+      <distribution>mucfc</distribution>
+    </license>
+  </licenses>
+  <dependencies>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.6.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>

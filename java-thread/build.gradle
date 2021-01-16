@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+}
+
+group 'com.mucfc'
+version '1.0-SNAPSHOT'
+
+tasks.withType(JavaCompile) {
+    configure(options) {
+        options.compilerArgs << '-Xlint:deprecation' << '-Xlint:unchecked'
+    }
+}
+
+java {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task convert2Maven {
+    pom {
+        project {
+            name 'java thread topic'
+            description 'java 线程课题'
+            inceptionYear '2021'
+            licenses {
+                license {
+                    name "Mucfc technology."
+                    url 'http://www.mucfc.com'
+                    distribution 'mucfc'
+                }
+            }
+        }
+    }.writeTo("$buildDir/../pom.xml")
+}
