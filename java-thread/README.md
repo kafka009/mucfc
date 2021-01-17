@@ -23,6 +23,10 @@
 ### 2.3 yield
 A hint to the scheduler that the current thread is willing to yield its current use of a processor. The scheduler is free to ignore this hint.
 ### 2.4 interrupt
++ 线程结束或者还未开始: isInterrupted＝false
++ sleep: InterruptedException – if any thread has interrupted the current thread. The interrupted status of the current thread is cleared when this exception is thrown.
++ 处于interrupted状态的线程从非阻塞态进入阻塞态也会触发InterruptedException
++ queue.take不一定会进入阻塞状态
 
 ## 3. ThreadLocal / InheritableThreadLocal
 ### 3.1 ThreadLocalMap

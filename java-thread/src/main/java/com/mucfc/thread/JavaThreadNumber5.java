@@ -7,6 +7,7 @@ import java.util.concurrent.TransferQueue;
  * 依赖于每个线程自己的任务队列
  */
 public class JavaThreadNumber5 {
+    @SuppressWarnings("unchecked")
     private static final TransferQueue<Runnable>[] deques = new LinkedTransferQueue[]{
             new LinkedTransferQueue<Runnable>(),
             new LinkedTransferQueue<Runnable>(),
@@ -30,7 +31,7 @@ public class JavaThreadNumber5 {
         @Override
         public void run() {
             try {
-                while (true) {
+                while (!Thread.currentThread().isInterrupted()) {
                     Runnable runnable = this.myQueue.take();
 
                     runnable.run();

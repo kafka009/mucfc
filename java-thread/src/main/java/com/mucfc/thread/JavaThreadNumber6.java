@@ -51,7 +51,7 @@ public class JavaThreadNumber6 {
     };
     private static volatile int i = 0;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         executor1.submit(runnable);
     }
 }
