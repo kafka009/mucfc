@@ -11,7 +11,6 @@ import java.lang.reflect.Method;
 // https://blog.csdn.net/lizhengyu891231/article/details/95353980
 public class CglibAspect {
     public static void main(String[] args) {
-        // 科科项目改造
         DataProvider enhancer = (DataProvider) Enhancer.create(DataProviderImpl.class,
                 new MethodInterceptor() {
                     @Override

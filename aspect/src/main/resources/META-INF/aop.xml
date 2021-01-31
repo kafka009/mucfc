@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<aspectj>
+	<weaver options="-verbose -debug -showweaveinfo">
+		<include within="com.mucfc.aspect.*" />
+	</weaver>
+	<aspects>
+		<aspect name="com.mucfc.aspect.aspectj.MyAspectj" />
+	</aspects>
+</aspectj>

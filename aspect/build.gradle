@@ -20,6 +20,8 @@ repositories {
 dependencies {
     implementation "cglib:cglib:3.3.0"
     implementation "org.aspectj:aspectjweaver:1.9.6"
+    implementation "org.aspectj:aspectjrt:1.9.6"
+    implementation "org.aspectj:aspectjtools:1.9.6"
 
     implementation "org.apache.commons:commons-lang3:3.11"
     implementation "commons-io:commons-io:2.8.0"
