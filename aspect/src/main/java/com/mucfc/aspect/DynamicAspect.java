@@ -1,7 +1,6 @@
 package com.mucfc.aspect;
 
 import com.mucfc.aspect.service.DataProvider;
-import com.mucfc.aspect.service.DataProviderImpl;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

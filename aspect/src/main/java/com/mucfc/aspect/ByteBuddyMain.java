@@ -4,12 +4,10 @@ import com.mucfc.aspect.download.Download;
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.agent.ByteBuddyAgent;
 import net.bytebuddy.description.annotation.AnnotationDescription;
-import net.bytebuddy.description.annotation.AnnotationList;
 import net.bytebuddy.dynamic.ClassFileLocator;
 import net.bytebuddy.implementation.FixedValue;
 import net.bytebuddy.pool.TypePool;
 import org.mapstruct.Mapper;
-import org.mapstruct.Qualifier;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -29,9 +27,9 @@ public class ByteBuddyMain {
                 .toString();
 
         ByteBuddyAgent.install();
-        TypePool typePool = TypePool.Default.ofSystemLoader();
+        TypePool typePool = TypePool.ClassLoading.ofSystemLoader();
         Class<?> x = new ByteBuddy()
-                .decorate(typePool.describe("com.mucfc.aspect.download.Download").resolve(), ClassFileLocator.ForClassLoader.ofSystemLoader())
+                .decorate(typePool.describe("com.mucfc.aspect.download.Download").resolve(), ClassFileLocator.ForFolder.ForClassLoader.ofSystemLoader())
                 .annotateType(AnnotationDescription.Builder.ofType(Mapper.class).build())
                 .make()
                 .load(Thread.currentThread().getContextClassLoader())

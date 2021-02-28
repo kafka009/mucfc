@@ -2,8 +2,9 @@ package com.mucfc.aspect;
 
 import com.mucfc.aspect.service.DataProvider;
 import com.mucfc.aspect.service.DataProviderImpl;
-import net.sf.cglib.proxy.*;
-import net.sf.cglib.transform.ClassFilter;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
 
 import java.beans.Transient;
 import java.lang.reflect.Method;
