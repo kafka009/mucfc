@@ -5,6 +5,8 @@ import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.agent.ByteBuddyAgent;
 import net.bytebuddy.description.annotation.AnnotationDescription;
 import net.bytebuddy.dynamic.ClassFileLocator;
+import net.bytebuddy.dynamic.DynamicType;
+import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 import net.bytebuddy.implementation.FixedValue;
 import net.bytebuddy.pool.TypePool;
 import org.mapstruct.Mapper;
@@ -27,16 +29,18 @@ public class ByteBuddyMain {
                 .toString();
 
         ByteBuddyAgent.install();
-        TypePool typePool = TypePool.ClassLoading.ofSystemLoader();
-        Class<?> x = new ByteBuddy()
-                .decorate(typePool.describe("com.mucfc.aspect.download.Download").resolve(), ClassFileLocator.ForFolder.ForClassLoader.ofSystemLoader())
+//        TypePool typePool = TypePool.ClassLoading.ofSystemLoader();
+        DynamicType.Loaded<?> load = new ByteBuddy()
+//                .decorate(typePool.describe("com.mucfc.aspect.download.Download").resolve(), ClassFileLocator.ForFolder.ForClassLoader.ofSystemLoader())
+                .redefine(Download.class)
                 .annotateType(AnnotationDescription.Builder.ofType(Mapper.class).build())
                 .make()
-                .load(Thread.currentThread().getContextClassLoader())
-                .getLoaded();
+                .load(Download.class.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());
 
-        System.out.println(x);
-        System.out.println(Download.class.getAnnotations()[0]);
+        System.out.println(load.getLoaded().getAnnotations().length);
+        System.out.println(Download.class.getClassLoader());
+        System.out.println("===================================");
+        System.out.println(Download.class.getAnnotations().length);
         System.out.println(helloWorld + "111");  // Hello World!
     }
 }
