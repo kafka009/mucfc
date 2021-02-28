@@ -25,6 +25,8 @@ dependencies {
 
     implementation "org.apache.commons:commons-lang3:3.11"
     implementation "commons-io:commons-io:2.8.0"
+    implementation "net.bytebuddy:byte-buddy:1.10.21"
+    implementation "net.bytebuddy:byte-buddy-agent:1.10.21"
 
     implementation "org.mapstruct:mapstruct:1.4.1.Final"
     annotationProcessor "org.mapstruct:mapstruct-processor:1.4.1.Final"
