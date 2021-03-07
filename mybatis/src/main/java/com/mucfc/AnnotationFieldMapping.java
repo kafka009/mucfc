@@ -1,6 +1,7 @@
 package com.mucfc;
 
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class AnnotationFieldMapping implements FieldMapping {
@@ -8,6 +9,7 @@ public class AnnotationFieldMapping implements FieldMapping {
     public String mapping(PropertyDescriptor descriptor) {
         String readFrom = (String) descriptor.getValue("read_from");
         if (null != readFrom) {
+            descriptor.setValue("read_from", descriptor.getName());
             return readFrom;
         }
 
@@ -19,7 +21,8 @@ public class AnnotationFieldMapping implements FieldMapping {
         }
 
         try {
-            copyField = descriptor.getPropertyEditorClass().getDeclaredField(descriptor.getName()).getAnnotation(CopyField.class);
+            Field field = descriptor.getWriteMethod().getDeclaringClass().getDeclaredField(descriptor.getName());
+            copyField = field.getAnnotation(CopyField.class);
         } catch (NoSuchFieldException ignore) {
         }
         if (null != copyField) {
@@ -27,6 +30,7 @@ public class AnnotationFieldMapping implements FieldMapping {
             return copyField.value();
         }
 
+        descriptor.setValue("read_from", descriptor.getName());
         return descriptor.getName();
     }
 }
